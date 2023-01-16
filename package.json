@@ -25,6 +25,7 @@
   "type": "module",
   "scripts": {
     "start:dev": "nodemon src/index.ts",
+    "start:prod": "webpack",
     "test": "jest"
   },
   "repository": {
