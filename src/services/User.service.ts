@@ -1,6 +1,6 @@
-import { IUser } from "../Models/User";
+import { IUser } from "../models/User";
 import { v4 as uuid } from 'uuid';
-import {IncomingMessage, ServerResponse} from "http";
+import { IncomingMessage } from "http";
 
 let users: IUser[] = []
 

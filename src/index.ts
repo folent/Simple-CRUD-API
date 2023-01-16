@@ -1,17 +1,10 @@
 import http from 'node:http';
-import cluster from 'node:cluster';
-import os from 'node:os'
 import * as dotenv from "dotenv";
 import * as UserService from "./services/User.service.js";
 import {IncomingMessage, ServerResponse} from "http";
 import { validate } from 'uuid';
-import {IUser} from "./Models/User";
-import {getUserFromBody} from "./services/User.service.js";
-
-interface IError {
-    statusCode: number,
-    message: string
-}
+import { IUser } from "./models/User";
+import { getUserFromBody } from "./services/User.service.js";
 
 dotenv.config();
 
@@ -118,22 +111,9 @@ server.listen(PORT, hostname, () => {
     console.log(`Server running at http://${hostname}:${PORT}/`);
 });
 
-// if (cluster.isPrimary) {
-//     console.log(os.cpus().length)
-//     for (let i = 1; i < os.cpus().length - 1; i++) {
-//         const server = http.createServer(requestListener);
-//
-//         server.listen(PORT + i, hostname, () => {
-//             console.log(`Server running at http://${hostname}:${PORT + i}/`);
-//         });
-//         const worker = cluster.fork();
-//         worker.on('listening', (address) => {
-//             console.log('addrres', address)
-//         });
-//     }
-// }
-
 server.on('error', function (req: IncomingMessage, res: ServerResponse) {
     res.statusCode = 500;
     res.end('Server not responding');
 })
+
+export default server
